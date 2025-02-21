@@ -1,4 +1,5 @@
 rootProject.name = 'exhibition'
 include 'common'
 include 'domain'
+include 'api'
 

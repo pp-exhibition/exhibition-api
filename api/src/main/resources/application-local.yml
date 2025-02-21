@@ -1,0 +1,47 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    exhibition:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+#      jdbc-url: jdbc:mysql://localhost:3306/exhibition?serverTimezone=Asia/Seoul&useUniCode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+      jdbc-url: jdbc:mysql://localhost:3306/exhibition?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 8489
+      minimum-idle: 5             # 최소 유휴 커넥션 수: 풀에 유지할 최소한의 사용 대기중인 커넥션 수
+      maximum-pool-size: 20       # 최대 풀 사이즈: 풀에서 동시에 활성화 될 수 있는 커넥션의 최대 수 (유휴+활성)
+      idle-timeout: 600000        # 유휴 커넥션 유지 시간: 커넥션이 사용되지 않고 풀에 머무를 수 있는 최대 시간 (밀리초)
+      max-lifetime: 1800000       # 커넥션 최대 수명: 커넥션이 생성된 후 최대 사용할 수 있는 시간 (밀리초), 이 시간이 지나면 재생성됨
+      connection-timeout: 30000   # 커넥션 획득 최대 대기시간: 풀에서 커넥션을 가져오기 위해 기다릴 수 있는 최대 시간 (밀리초), 이 시간을 초과하면 예외 발생
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  # 테이블/컬럼명 매핑 시 명시적 네이밍 유지
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        show_sql: true
+        query:
+          in_clause_parameter_padding: true # IN 절에서의 파라미터 포맷팅 (prod : false)
+        use_sql_comments: true # SQL 주석 사용 (prod : false)
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+#      file-size-threshold: 1MB
+
+server:
+  port: 8080
+
+logging:
+  level:
+#    root: DEBUG
+    com.pp.config: DEBUG
