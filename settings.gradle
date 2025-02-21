@@ -1,1 +1,3 @@
 rootProject.name = 'exhibition'
+include 'common'
+
