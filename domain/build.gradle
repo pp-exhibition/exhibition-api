@@ -1,0 +1,48 @@
+description "domain module"
+
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+
+dependencies {
+    implementation project(':common')
+
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // querydsl
+    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+    annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
+    // log (p6spy)
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.1'
+
+    // database
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // redis
+//    implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.3.3'
+
+    // test (https://github.com/naver/fixture-monkey)
+    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter:1.0.24")
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true      // 표준 출력(System.out) 및 표준 에러(System.err) 출력 활성화
+        showCauses = true               // 예외의 원인(Cause)까지 출력
+        showExceptions = true           // 예외 메시지 출력
+        showStackTraces = true          // 전체 스택 트레이스 출력
+        exceptionFormat = 'full'        // 예외 메시지와 전체 스택 트레이스를 자세하게(full) 출력
+    }
+}
