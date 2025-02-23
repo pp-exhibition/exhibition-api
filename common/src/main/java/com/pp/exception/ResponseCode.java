@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ResponseCode implements CommonResponseCode {
+public enum ResponseCode {
 
     /**
      * Success (0200 ~ 0300)

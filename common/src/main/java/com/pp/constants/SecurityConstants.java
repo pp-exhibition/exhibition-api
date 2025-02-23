@@ -3,6 +3,8 @@ package com.pp.constants;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
+
 @SuppressWarnings("java:S2386")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SecurityConstants {
@@ -28,5 +30,16 @@ public class SecurityConstants {
              * Member
             */
     };
+
+    public static final String[] PERMIT_ADMIN_PATH = {
+
+    };
+
+    public static final String[] PERMIT_USER_PATH = {
+
+    };
+
+    public static final String JWT_SUBJECT_SEPARATOR = "::";
+    public static final Long ACCESS_TOKEN_EXPIRE_TIME = Duration.ofHours(3).toMillis();
 
 }
