@@ -38,6 +38,9 @@ spring:
       max-request-size: 10MB
 #      file-size-threshold: 1MB
 
+  jwt:
+    secret: locallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocal
+
 server:
   port: 8080
 
