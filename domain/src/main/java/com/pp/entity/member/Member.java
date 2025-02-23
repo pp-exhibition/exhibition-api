@@ -75,7 +75,7 @@ public class Member extends BaseTimeEntity {
                 .provider(Provider.EMAIL)
                 .gender(gender)
                 .providerId(null)
-                .role(Role.ROLE_USER)
+                .role(Role.USER)
                 .status(MemberStatus.ACTIVE)
                 .build();
     }
@@ -96,7 +96,7 @@ public class Member extends BaseTimeEntity {
                 .gender(gender)
                 .provider(provider)
                 .providerId(providerId)
-                .role(Role.ROLE_USER)
+                .role(Role.USER)
                 .status(MemberStatus.ACTIVE)
                 .build();
     }

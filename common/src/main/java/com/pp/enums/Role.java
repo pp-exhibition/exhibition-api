@@ -1,5 +1,10 @@
 package com.pp.enums;
 
 public enum Role {
-    ROLE_ADMIN, ROLE_USER
+    ADMIN, USER
+    ;
+
+    public String getSecurityRole() {
+        return "ROLE_" + this;
+    }
 }
