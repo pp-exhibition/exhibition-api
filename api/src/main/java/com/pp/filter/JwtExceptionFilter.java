@@ -3,7 +3,7 @@ package com.pp.filter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pp.exception.ResponseCode;
-import com.pp.response.ApiResponse;
+import com.pp.response.CommonResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,7 +40,7 @@ public class JwtExceptionFilter extends OncePerRequestFilter {
     }
 
     private String getErrorResponseEntity(AuthenticationException exception) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(ApiResponse.error(ResponseCode.INVALID_AUTHENTICATION, exception));
+        return objectMapper.writeValueAsString(CommonResponse.error(ResponseCode.INVALID_AUTHENTICATION, exception));
     }
 
 }

@@ -25,9 +25,9 @@ public class P6spySqlFormatter implements MessageFormattingStrategy {
         return AppConstants.LINE_SEPARATOR +
                 "----------------------------------------------------------------------------------------------------" +
                 AppConstants.LINE_SEPARATOR +
-                "\t" + String.format("[Connection ID] : \t\t\t%s", connectionId) +
+                "\t" + String.format("[Connection ID] \t%s", connectionId) +
                 AppConstants.LINE_SEPARATOR +
-                "\t" + String.format("[Execution Time] : \t\t\t%s ms", elapsed) +
+                "\t" + String.format("[Execution Time] \t%s ms", elapsed) +
                 AppConstants.LINE_SEPARATOR +
                 "----------------------------------------------------------------------------------------------------";
     }
@@ -36,12 +36,15 @@ public class P6spySqlFormatter implements MessageFormattingStrategy {
         if (isStatementDdl(sql, category)) {
             return FormatStyle.DDL
                     .getFormatter()
-                    .format(sql);
+                    .format(sql)
+                    .toUpperCase(Locale.ROOT)
+                    .replace("+0900", "");
         }
 
         return FormatStyle.BASIC
                 .getFormatter()
-                .format(sql);
+                .format(sql)
+                .replace("+0900", "");
     }
 
     private boolean isStatementDdl(final String sql, final String category) {

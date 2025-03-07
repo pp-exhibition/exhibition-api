@@ -7,7 +7,6 @@ public record Token(
         String accessToken,
         Date accessExpiredAt
 ) {
-
         public static Token of(String accessToken, Date accessExpiredAt) {
                 return new Token(accessToken, accessExpiredAt);
         }
