@@ -59,19 +59,14 @@ public class Member extends BaseTimeEntity {
     @Column(name = "role", nullable = false, columnDefinition = "varchar(20) comment '권한'")
     private Role role;
 
-    public static Member ofEmail(String nickname,
-                                 String email,
-                                 String password,
-                                 Provider provider,
-                                 Gender gender,
-                                 String providerId) {
-        if (provider != Provider.EMAIL || !Objects.isNull(providerId)) {
-            throw new CustomException(ResponseCode.INVALID_PROVIDER);
-        }
+    public static Member createEmailMember(String email,
+                                           String password,
+                                           String nickname,
+                                           Gender gender) {
         return Member.builder()
-                .nickname(nickname)
                 .email(email)
                 .password(password)
+                .nickname(nickname)
                 .provider(Provider.EMAIL)
                 .gender(gender)
                 .providerId(null)
@@ -80,19 +75,19 @@ public class Member extends BaseTimeEntity {
                 .build();
     }
 
-    public static Member ofOauth(String nickname,
-                                 String email,
-                                 String password,
-                                 Provider provider,
-                                 Gender gender,
-                                 String providerId) {
+    public static Member createSocialMember(String email,
+                                            String password,
+                                            String nickname,
+                                            Gender gender,
+                                            Provider provider,
+                                            String providerId) {
         if (provider == Provider.EMAIL || Objects.isNull(providerId) || !Objects.isNull(password)) {
             throw new CustomException(ResponseCode.INVALID_PROVIDER);
         }
         return Member.builder()
-                .nickname(nickname)
                 .email(email)
                 .password(null)
+                .nickname(nickname)
                 .gender(gender)
                 .provider(provider)
                 .providerId(providerId)

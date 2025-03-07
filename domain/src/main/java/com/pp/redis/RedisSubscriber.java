@@ -17,7 +17,7 @@ public class RedisSubscriber implements MessageListener {
     private final SimpMessagingTemplate messagingTemplate;
 
     @Override
-    public void onMessage(final Message message, final byte[] pattern) {
+    public void onMessage(Message message, byte[] pattern) {
 
     }
 
