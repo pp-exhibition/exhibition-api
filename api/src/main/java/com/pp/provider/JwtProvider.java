@@ -42,6 +42,11 @@ public class JwtProvider {
         return Token.of(accessToken, accessExpiredAt);
     }
 
+    public Token createToken(String email, Provider provider) {
+        final String accessToken = createAccessToken(email, provider);
+        return Token.of(accessToken, getExpirationByToken(accessToken));
+    }
+
     public String createAccessToken(String email, Provider provider) {
         Date now = new Date();
         long accessTokenExpireTime = now.getTime() + SecurityConstants.ACCESS_TOKEN_EXPIRE_TIME;

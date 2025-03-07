@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   config:
     activate:
@@ -25,11 +28,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-        format_sql: true
+        format_sql: false
         show_sql: true
         query:
           in_clause_parameter_padding: true # IN 절에서의 파라미터 포맷팅 (prod : false)
-        use_sql_comments: true # SQL 주석 사용 (prod : false)
+        use_sql_comments: false # SQL 주석 사용 (prod : false), p6spy 사용시 이슈 발생
 
   data:
     redis:
@@ -46,13 +49,15 @@ spring:
   jwt:
     secret: locallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocallocal
 
-server:
-  port: 8080
-
 logging:
   level:
 #    root: DEBUG
     com.pp.config: DEBUG
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
 
 websocket:
   allowedOrigins: "http://localhost:3000"

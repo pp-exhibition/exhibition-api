@@ -9,6 +9,8 @@ import java.time.Duration;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SecurityConstants {
 
+    public static final String CONTENT_TYPE = "application/json; charset=utf-8";
+
     public static final String[] ALLOW_ORIGINS = {
             "http://localhost:8080",
             "http://localhost:3000",
@@ -29,6 +31,7 @@ public class SecurityConstants {
             /**
              * Member
             */
+            "/api/auth/**"
     };
 
     public static final String[] PERMIT_ADMIN_PATH = {
