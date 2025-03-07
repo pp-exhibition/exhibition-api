@@ -1,6 +1,8 @@
 package com.pp.controller.member;
 
+import com.pp.dto.request.SignInRequest;
 import com.pp.dto.request.SignUpRequest;
+import com.pp.dto.response.SignInResponse;
 import com.pp.dto.response.SignUpResponse;
 import com.pp.exception.ResponseCode;
 import com.pp.response.CommonResponse;
@@ -43,5 +45,19 @@ public class AuthController {
         return CommonResponse.success(ResponseCode.SUCCESS, response);
     }
 
+    @Operation(
+            summary = "이메일 로그인",
+            description = "이메일로 로그인을 진행한다."
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "회원 및 토큰 응답",
+            content = @Content(schema = @Schema(implementation = SignInResponse.class))
+    )
+    @PostMapping("/sign-in")
+    public CommonResponse<SignInResponse> signUp(@Valid @RequestBody SignInRequest request) {
+        final SignInResponse response = authService.signIn(request);
+        return CommonResponse.success(ResponseCode.SUCCESS, response);
+    }
 
 }

@@ -1,6 +1,8 @@
 package com.pp.service.member;
 
+import com.pp.dto.request.SignInRequest;
 import com.pp.dto.request.SignUpRequest;
+import com.pp.dto.response.SignInResponse;
 import com.pp.dto.response.SignUpResponse;
 import com.pp.entity.member.Member;
 import com.pp.entity.member.Word;
@@ -42,6 +44,13 @@ public class AuthService {
         return SignUpResponse.from(member, token);
     }
 
+    @Transactional
+    public SignInResponse signIn(SignInRequest request) {
+        final Member member = memberRepository.getEmailAndProvider(request.email(), Provider.EMAIL);
+        checkPasswordMatch(request.password(), member.getPassword());
+        return SignInResponse.from(member, jwtProvider.getTokenByEmail(request.email(), Provider.EMAIL));
+    }
+
     private void checkEmailDuplication(final String email) {
         if (memberRepository.existsByEmailAndProvider(email, Provider.EMAIL)) {
             throw new CustomException(ResponseCode.ALREADY_IN_USE_EMAIL);
@@ -51,6 +60,12 @@ public class AuthService {
     private void checkNicknameDuplication(final String nickname) {
         if (memberRepository.existsByEmailAndProvider(nickname, Provider.EMAIL)) {
             throw new CustomException(ResponseCode.ALREADY_IN_USE_NICKNAME);
+        }
+    }
+
+    private void checkPasswordMatch(final String password, final String encPassword) {
+        if (!passwordEncoder.matches(password, encPassword)) {
+            throw new CustomException(ResponseCode.INVALID_PASSWORD);
         }
     }
 
