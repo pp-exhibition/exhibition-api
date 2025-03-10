@@ -6,3 +6,18 @@ decorator:
   datasource:
     p6spy:
       enable-logging: false
+
+springdoc:
+  api-docs:
+    path: /api-docs
+    groups:
+      enabled: true
+  packages-to-scan: com.pp.controller
+  swagger-ui:
+    tags-sorter: alpha
+    groups-order: asc
+    syntax-highlight:
+      activated: true
+    try-it-out-enabled: false
+  enable-kotlin: false
+

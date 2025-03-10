@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Profile;
 @Profile("!prod")
 @OpenAPIDefinition(
         servers = {
-                @Server(url = "NOT_FOUND", description = "stg"),
-                @Server(url = "http://localhost:8080", description = "local")
+                @Server(url = "http://localhost:8080", description = "local"),
+//                @Server(url = "NOT_FOUND", description = "stg")
         },
         info = @Info(
                 title = "전시 커뮤니티",
@@ -31,7 +31,7 @@ import org.springframework.context.annotation.Profile;
 public class SwaggerConfig {
 
     @Bean
-    public GroupedOpenApi geAuthApi() {
+    public GroupedOpenApi getAuthApi() {
         return GroupedOpenApi.builder()
                 .group("auth")
                 .pathsToMatch("/v1/api/auth/**")
