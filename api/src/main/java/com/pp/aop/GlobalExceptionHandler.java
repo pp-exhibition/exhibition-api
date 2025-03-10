@@ -3,6 +3,7 @@ package com.pp.aop;
 import com.pp.exception.CustomException;
 import com.pp.exception.ResponseCode;
 import com.pp.response.CommonResponse;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Slf4j
+@Hidden
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 

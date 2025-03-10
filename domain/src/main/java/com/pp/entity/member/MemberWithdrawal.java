@@ -40,14 +40,12 @@ public class MemberWithdrawal extends BaseCreatedEntity {
 	@Column(name = "deleted_at", columnDefinition = "datetime comment '탈퇴 일시'")
 	private LocalDateTime deletedAt;
 
-	public static MemberWithdrawal of(String email,
-									  Gender gender,
-									  Role role) {
+	public static MemberWithdrawal fromEntity(Member member) {
 		return MemberWithdrawal.builder()
-				.email(email)
-				.gender(gender)
+				.email(member.getEmail())
+				.gender(member.getGender())
 				.status(MemberStatus.WITHDRAWAL)
-				.role(role)
+				.role(member.getRole())
 				.deletedAt(LocalDateTime.now())
 				.build();
 	}

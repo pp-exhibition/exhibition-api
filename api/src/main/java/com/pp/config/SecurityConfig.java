@@ -57,6 +57,7 @@ public class SecurityConfig {
                                 .requestMatchers(SecurityConstants.PERMIT_USER_PATH).hasAnyRole(Role.USER.name())
                                 .requestMatchers(SecurityConstants.PERMIT_ADMIN_PATH).hasAnyRole(Role.ADMIN.name())
                                 .requestMatchers(SecurityConstants.PERMIT_ALL_PATH).permitAll()
+                                .requestMatchers(SecurityConstants.SWAGGER_PATH).permitAll()
                                 .anyRequest().authenticated())
                 .csrf(CsrfConfigurer::disable)
                 .cors(configurer -> configurer.configurationSource(corsConfigurationSource()))
