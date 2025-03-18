@@ -28,7 +28,7 @@ public record CommonResponse<T>(
         return new CommonResponse<>(false, responseCode.getCode(), message, null);
     }
 
-    public static CommonResponse<String> error(ResponseCode responseCode, RuntimeException exception) {
+    public static CommonResponse<String> error(ResponseCode responseCode, Exception exception) {
         return new CommonResponse<>(false, responseCode.getCode(), responseCode.getMessage(), exception.getMessage());
     }
 
