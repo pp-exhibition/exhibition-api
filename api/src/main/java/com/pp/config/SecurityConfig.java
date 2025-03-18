@@ -77,9 +77,11 @@ public class SecurityConfig {
         config.addAllowedHeader("*"); // 모든 헤더 허용
         config.addExposedHeader(HttpHeaders.AUTHORIZATION); // Authorization 헤더 노출
         config.setMaxAge(3600L); // 캐시 만료 시간 설정
-        config.setAllowCredentials(false);  // 쿠키 전송 허용
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")); // 모든 HTTP 메소드 허용
+
+        config.setAllowCredentials(true);  // 쿠키 전송 허용
         config.setAllowedOriginPatterns(List.of("*")); // 모든 출처 허용 (패턴 사용)
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")); // 모든 HTTP 메소드 허용
+        config.addAllowedOriginPattern("*");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config); // 모든 경로에 대해 CORS 설정
