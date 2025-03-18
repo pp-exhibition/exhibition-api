@@ -26,7 +26,7 @@ public class SecurityConstants {
     };
 
     public static final String[] PERMIT_ALL_PATH = {
-            "/health-check",
+            "/health-check", "/ws/connect/**",
 
             /**
              * Member

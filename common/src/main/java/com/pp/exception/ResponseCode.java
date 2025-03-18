@@ -11,6 +11,7 @@ public enum ResponseCode {
      * Success (0200 ~ 0300)
      */
     SUCCESS("0200", "성공했습니다."),
+    SUCCESS_CONNECT("0210", "연결에 성공했습니다."),
 
     /**
      * Common (0600 ~ 0800)
@@ -28,6 +29,8 @@ public enum ResponseCode {
 
     FORBIDDEN("0700", "접근 권한이 없습니다."),
     UNAUTHORIZED("0701", "유효한 인증 자격이 없습니다."),
+
+    JSON_PROCESSING_ERROR("0800", "JSON 처리 중 오류가 발생하였습니다."),
 
     /**
      * Member (1000 ~ 1100)

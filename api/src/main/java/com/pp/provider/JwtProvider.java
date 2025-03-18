@@ -101,6 +101,8 @@ public class JwtProvider {
             throw new CustomException(ResponseCode.UNSUPPORTED_JWT_EXCEPTION);
         } catch (IllegalArgumentException ex) {
             throw new CustomException(ResponseCode.ILLEGAL_ARGUMENT_EXCEPTION);
+        } catch (Exception e) {
+            throw new CustomException(ResponseCode.INVALID_AUTHENTICATION);
         }
     }
 

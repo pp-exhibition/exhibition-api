@@ -1,5 +1,6 @@
-package com.pp.aop;
+package com.pp.handler;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pp.exception.CustomException;
 import com.pp.exception.ResponseCode;
 import com.pp.response.CommonResponse;
@@ -18,7 +19,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 @Slf4j
 @Hidden
@@ -38,6 +38,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(CommonResponse.error(ResponseCode.INTERNAL_SERVER_ERROR, e));
     }
 
+    @ExceptionHandler(JsonProcessingException.class)
+    public ResponseEntity<CommonResponse<String>> handleJsonProcessingException(JsonProcessingException e, WebRequest request) {
+        errorLogging(e, request);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(CommonResponse.error(ResponseCode.JSON_PROCESSING_ERROR, e));
+    }
+
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<CommonResponse<String>> handleCustomException(CustomException e, WebRequest request) {
         errorLogging(e, request);
@@ -50,7 +56,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
          false  : uri=/myapp/login
          */
         final String uri = request.getDescription(false).replace("uri=", "");
-        final String user = Objects.requireNonNullElse(request.getRemoteUser(), "unknown");
+        final String user = request.getRemoteUser();
 
         final StringBuilder builder = new StringBuilder()
                 .append(System.lineSeparator())
